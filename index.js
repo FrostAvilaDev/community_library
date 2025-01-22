@@ -1,22 +1,10 @@
 import express from "express";
+import userRouters from "./src/routes/user.routes.js";
+
 const app = express();
+
 app.use(express.json());
-
-
-// Method => GET, POST, PUT/PATCH, DELETE
-// Name => / - sempre no   plural
-// Callback functions => Onde EXECUTAMOS O BACKEND (LÓGICA, REGRA DE NEGÓCIO, ETC...)
-
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
-app.post("/users", (req, res) => {
-  const users = [];
-  const body = req.body;
-  users += body;
-  res.send(users);
-});
+app.use(userRouters);
 
 app.listen(3000, () => {
   console.log("Server started on port 3000");

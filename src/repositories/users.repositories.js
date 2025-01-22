@@ -12,7 +12,7 @@ db.run(`
 
 const createUserRepository = (newUser) => {
   return new Promise((res, rej) => {
-    const {username, email, password, avatar} = newUser;
+    const { username, email, password, avatar } = newUser;
     db.run(
       `
             INSERT INTO users (username, email, password, avatar) 
@@ -21,14 +21,12 @@ const createUserRepository = (newUser) => {
       [username, email, password, avatar],
       (err) => {
         if (err) {
-            rej(err);
+          rej(err);
         } else {
-          res({
-            message: "User created successfully",
-          });
+          res({ id: this.lastID, ...newUser });
         }
       }
     );
   });
 };
- export default {createUserRepository};
+export default { createUserRepository };
